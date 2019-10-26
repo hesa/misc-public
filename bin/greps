@@ -1,0 +1,82 @@
+#!/bin/bash
+
+GREP_EXPRS=""
+CMD=""
+FILES=""
+
+DEBUG=false
+
+debug()
+{
+    if [ "$DEBUG" = "true" ]
+    then
+        echo "$*"
+    fi
+}
+
+while [ "$1" != "" ]
+do
+    if [ "$1" = "" ]
+    then
+        break
+    fi
+
+    if [ "$1" = "-i" ] && [ "$GREP_EXPRS" = "" ]
+    then
+        GREP_ARG="$GREP_ARG -i "
+    elif [ "$1" = "-lb" ] && [ "$GREP_EXPRS" = "" ]
+    then
+        GREP_ARG="$GREP_ARG --line-buffered "
+    elif [ "$1" = "-" ] # && [ "$GREP_EXPRS" = "" ]
+    then
+        FILES=" " # add space to mark we're reading files
+    elif [ "$1" = "-or" ]  && [ "$GREP_EXPRS" = "" ]
+    then
+        OR=true
+    else
+        if [ "$FILES" = "" ]
+        then
+            GREP_EXPRS="$GREP_EXPRS $1"
+        else
+            FILES="$FILES $1"
+        fi
+    fi
+
+    shift
+done
+
+
+
+if [ "$GREP_EXPRS" = "" ]
+then
+    echo "Can't grep for nothing."
+    exit 1
+fi
+
+for expr in $GREP_EXPRS
+do
+    if [ "$OR" = "true" ]
+    then
+        CMD="$CMD $GREP_ARG -e \"$expr\""
+    else
+        if [ "$CMD" = "" ]
+        then
+            CMD="grep  $GREP_ARG -e $expr $FILES "
+        else
+            CMD="$CMD | grep $GREP_ARG -e \"$expr\" "
+        fi
+    fi
+done
+
+if [ "$OR" = "true" ]
+then
+    CMD="grep $CMD $FILES"
+fi
+
+debug "FILES: $FILES"
+debug "EXPRS: $GREP_EXPRS"
+debug "ARGS:  $GREP_ARG"
+debug "CMD:   $CMD"
+
+
+eval $CMD
