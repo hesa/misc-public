@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# File to more easily search for many expr (AND or OR)
+#
+
 GREP_EXPRS=""
 CMD=""
 FILES=""
@@ -14,11 +18,59 @@ debug()
     fi
 }
 
+usage()
+{
+    PROG=$(basename $0)
+    echo "NAME"
+    echo "  $PROG - print line matching pattern(s)"
+    echo
+    echo "SYNOPSIS"
+    echo "  $PROG [OPTIONS] PATTERNS [- FILES]"
+    echo
+    echo "DESCRIPTION"
+    echo "  $PROG searches for all the patterns supplied on the command line."
+    echo "  If no file(s) is supplied search is performed on stdin."
+    echo "  $PROG matches all patterns either using AND (default) or OR."
+    echo
+    echo "OPTIONS"
+    echo "  -h, --help  "
+    echo "   prints this help text"
+    echo 
+    echo "  -i"
+    echo "   ignore case"
+    echo 
+    echo "  -or"
+    echo "   Match the patterns using OR"
+    echo 
+    echo "  -lb"
+    echo "   Use line-buffering (slow, but needed for some stdin searches)"
+    echo 
+    echo "  -"
+    echo "   Marks the end of patterns to search for. After this every argument"
+    echo "   is considered to be a file"
+    echo
+    echo "EXAMPLES"
+    echo
+    echo "   $PROG -i hi there "
+    echo "    searches (stdin) for lines matching both \"hi\" and \"there\""
+    echo
+    echo "   $PROG -or -i hi there "
+    echo "    searches (stdin) for lines matching either \"hi\" or \"there\""
+    echo
+    echo "   $PROG -i hi there - *.txt"
+    echo "    searches in all files matching *.txt for lines matching both \"hi\" and \"there\""
+    echo
+}
+
 while [ "$1" != "" ]
 do
     if [ "$1" = "" ]
     then
         break
+    elif [ "$1" = "-h" ] ||  [ "$1" = "--help" ]
+    then
+        usage
+        exit 0
     fi
 
     if [ "$1" = "-i" ] && [ "$GREP_EXPRS" = "" ]
@@ -50,6 +102,7 @@ done
 if [ "$GREP_EXPRS" = "" ]
 then
     echo "Can't grep for nothing."
+    usage  1>&2
     exit 1
 fi
 
