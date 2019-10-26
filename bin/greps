@@ -117,7 +117,7 @@ done
 
 if [ "$GREP_EXPRS" = "" ]
 then
-    echo "Can't grep for nothing."
+    echo "Can't grep for nothing." 1>&2
     usage  1>&2
     exit 1
 fi
