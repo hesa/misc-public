@@ -42,4 +42,3 @@ cat $OUT_FILE | xsel -b
 echo "Copied content to clipboard"
 echo "Created file: $OUT_FILE"
 
-#cat Calendar_PKOX4M.ics | sed -e 's,: ,:,g' -e  '/^[[:space:]]*$/d' > lf.ics
