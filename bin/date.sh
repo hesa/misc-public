@@ -35,6 +35,6 @@ show_all
 if [ "$WAIT" = "true" ]
 then
     echo
-    echo "Press enter to conntiue..."
+    echo "Press enter to contiue..."
     read answer
 fi
