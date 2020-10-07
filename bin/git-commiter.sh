@@ -21,6 +21,9 @@ usage()
     echo "  -l, --help"
     echo "       print this help text"
     echo 
+    echo "  -gd <DIR>, --git-directory <DIR>"
+    echo "       read git stats from <DIR>. Default is current directory "
+    echo 
     echo "COMMITERS - space separated list of commiters"
     echo
     echo "EXAMPLE"
@@ -31,6 +34,7 @@ usage()
     echo
 }
 
+GIT_DIR=.
 while [ "$1" != "" ]
 do
     case "$1" in
@@ -40,6 +44,10 @@ do
         "--help"|"-h")
             usage
             exit 0
+            ;;
+        "--git-directory"|"-gt")
+            GIT_DIR=$2
+            shift
             ;;
         *)
             break
@@ -86,6 +94,9 @@ print_stat()
         pretty_print "$COMMITER" "$COMMITER_COMMITS" "${COMMITER_PERCENT}%"
     fi
 }
+
+
+cd $GIT_DIR
 
 repo_stat
 if [ "$VERBOSE" = "true" ]
