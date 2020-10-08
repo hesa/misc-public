@@ -2,6 +2,8 @@
 
 PRINT_FMT="%-30s %-8s %s\n"
 
+TMP_DIR=/tmp/git-commiter
+
 PROG=$(basename $0)
 
 usage()
@@ -22,7 +24,10 @@ usage()
     echo "       print this help text"
     echo 
     echo "  -gd <DIR>, --git-directory <DIR>"
-    echo "       read git stats from <DIR>. Default is current directory "
+    echo "       read git stats from <DIR>. Default is current directory."
+    echo 
+    echo "  -gu <URL>, --git-url <URL>"
+    echo "       read git stats from <URL>. This options overrides -gd"
     echo 
     echo "COMMITERS - space separated list of commiters"
     echo
@@ -45,8 +50,12 @@ do
             usage
             exit 0
             ;;
-        "--git-directory"|"-gt")
+        "--git-directory"|"-gd")
             GIT_DIR=$2
+            shift
+            ;;
+        "--git-url"|"-gu")
+            GIT_URL=$2
             shift
             ;;
         *)
@@ -96,6 +105,19 @@ print_stat()
 }
 
 
+if [ "$GIT_URL" != "" ]
+then
+    mkdir -p $TMP_DIR
+    cd $TMP_DIR
+    GIT_DIR=${TMP_DIR}/$(basename $GIT_URL)
+    if [ ! -d $GIT_DIR ]
+    then
+        git clone $GIT_URL
+    else
+        cd $GIT_DIR
+        git pull
+    fi
+fi
 cd $GIT_DIR
 
 repo_stat
@@ -114,4 +136,3 @@ do
     done
     shift
 done
-
