@@ -1,0 +1,29 @@
+#!/bin/bash
+
+REGEXP=$1
+VERBOSE=true
+
+verbose()
+{
+    if [ "$VERBOSE" = "true" ]
+    then
+        echo "$*" 1>&2
+    fi
+         
+}
+
+stop_containers()
+{
+    verbose "Find containers..."
+    IDS=$(docker container list | grep -v CONTAINER | grep ${REGEXP} | awk '{ print $1}')
+    verbose "Containers: $IDS"
+    for id in $IDS
+    do
+        verbose "Stop container $id"
+        docker stop $id
+    done
+    verbose "My work here is done"
+}
+
+stop_containers
+
