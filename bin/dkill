@@ -2,6 +2,7 @@
 
 REGEXP=$1
 VERBOSE=true
+MODE=container
 
 verbose()
 {
@@ -14,16 +15,26 @@ verbose()
 
 stop_containers()
 {
-    verbose "Find containers..."
+    verbose "Find containers matching: \"$REGEXP\""
     IDS=$(docker container list | grep -v CONTAINER | grep ${REGEXP} | awk '{ print $1}')
-    verbose "Containers: $IDS"
+    verbose "Containers found:         $IDS"
     for id in $IDS
     do
-        verbose "Stop container $id"
+        verbose "Stop container:           $id"
         docker stop $id
     done
     verbose "My work here is done"
 }
 
-stop_containers
+
+
+case $MODE in
+    "container")
+        stop_containers
+        ;;
+    *)
+        echo "Missing implementation"
+        ;;
+esac
+        
 
