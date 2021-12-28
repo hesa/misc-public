@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ "$1" == "--all" ]
+then
+    ALL=true
+fi
+
+if [ "$1" == "" ]
+then
+    DIR=.
+else
+    DIR=$1
+fi
+
+do_du()
+{
+if [ "$ALL" = "true" ]
+then
+    ls -a1 | grep -v -e "^\.$"  -e "^\.\.$" | while read dir
+    do
+        du -sm "$dir"
+    done 
+else
+    ls -a1 | grep -v -e "^\.$"  -e "^\.\.$" | while read dir
+    do
+        du -sm "$dir"
+    done 
+fi
+}
+
+do_du | sort -n
