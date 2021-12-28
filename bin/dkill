@@ -26,7 +26,24 @@ stop_containers()
     verbose "My work here is done"
 }
 
-
+while [ "$1" != "" ]
+do
+    case "$1" in
+        "--verbose"|"-v")
+            VERBOSE=true
+            ;;
+        "--container"|"-c")
+            MODE=container
+            ;;
+        *)
+            # probably a mode, leave loop and store arg as REGEXP
+            REGEXP=$1
+            break
+            ;;
+    esac
+    shift
+done
+         
 
 case $MODE in
     "container")
