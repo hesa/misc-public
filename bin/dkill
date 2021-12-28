@@ -1,0 +1,57 @@
+#!/bin/bash
+
+REGEXP=$1
+VERBOSE=true
+MODE=container
+
+verbose()
+{
+    if [ "$VERBOSE" = "true" ]
+    then
+        echo "$*" 1>&2
+    fi
+         
+}
+
+stop_containers()
+{
+    verbose "Find containers matching: \"$REGEXP\""
+    IDS=$(docker container list | grep -v CONTAINER | grep ${REGEXP} | awk '{ print $1}')
+    verbose "Containers found:         $IDS"
+    for id in $IDS
+    do
+        verbose "Stop container:           $id"
+        docker stop $id
+    done
+    verbose "My work here is done"
+}
+
+while [ "$1" != "" ]
+do
+    case "$1" in
+        "--verbose"|"-v")
+            VERBOSE=true
+            ;;
+        "--container"|"-c")
+            MODE=container
+            ;;
+        *)
+            # probably a mode, leave loop and store arg as REGEXP
+            REGEXP=$1
+            break
+            ;;
+    esac
+    shift
+done
+         
+
+case $MODE in
+    "container")
+        stop_containers
+        ;;
+    *)
+        echo "Missing implementation"
+        ;;
+esac
+        
+
