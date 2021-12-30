@@ -36,7 +36,7 @@ do
             MODE=container
             ;;
         *)
-            # probably a mode, leave loop and store arg as REGEXP
+            # probably not a mode, leave loop and store arg as REGEXP
             REGEXP=$1
             break
             ;;
