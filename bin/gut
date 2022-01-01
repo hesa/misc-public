@@ -1,0 +1,17 @@
+#!/bin/bash
+
+while [ "$1" != "" ]
+do
+    case "$1" in
+        "--quiet"|"-q")
+            HIDE="| grep -v -e \"~$\" -e \".pyc$\" "
+            ;;
+        *)
+            echo "SYNTAX ERROR: $1"
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+echo "git ls-files --others --exclude-standard $HIDE" | bash
