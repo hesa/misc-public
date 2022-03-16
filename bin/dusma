@@ -1,8 +1,13 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2021 Henrik Sandklef
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 if [ "$1" == "--all" ]
 then
     ALL=true
+    shift
 fi
 
 if [ "$1" == "" ]
@@ -14,18 +19,20 @@ fi
 
 do_du()
 {
-if [ "$ALL" = "true" ]
-then
-    ls -a1 | grep -v -e "^\.$"  -e "^\.\.$" | while read dir
-    do
-        du -sm "$dir"
-    done 
-else
-    ls -a1 | grep -v -e "^\.$"  -e "^\.\.$" | while read dir
-    do
-        du -sm "$dir"
-    done 
-fi
+    pushd $DIR >/dev/null 2>&1
+    if [ "$ALL" = "true" ]
+    then
+        ls -a1 | egrep -v -e "^\.$"  -e "^\.\.$" | while read dir
+        do
+            du -sm "$dir"
+        done 
+    else
+        ls -a1 | egrep "^\." | egrep -v -e "^\.$"  -e "^\.\.$" | while read dir
+        do
+            du -sm "$dir"
+        done 
+    fi
+    popd >/dev/null 2>&1
 }
 
 do_du | sort -n

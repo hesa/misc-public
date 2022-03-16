@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2021 Henrik Sandklef
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 PRINT_FMT="%-30s %-8s %s\n"
 
 TMP_DIR=/tmp/git-commiter

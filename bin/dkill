@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2021 Henrik Sandklef
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 REGEXP=$1
 VERBOSE=true
 MODE=container
@@ -36,7 +40,7 @@ do
             MODE=container
             ;;
         *)
-            # probably a mode, leave loop and store arg as REGEXP
+            # probably not a mode, leave loop and store arg as REGEXP
             REGEXP=$1
             break
             ;;
