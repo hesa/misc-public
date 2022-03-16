@@ -4,7 +4,7 @@
 export DATE_FMT="%Y-%m-%d %H:%M:%S  %Z" 
 LC_TIME=en_GB.utf8
 DATE=$(date)
-declare -a TIME_ZONES=("Asia/Tokyo"  "UTC" "Europe/Stockholm" "Europe/Berlin" "Europe/Madrid" "America/New_York")
+declare -a TIME_ZONES=("America/New_York"  "UTC" "Europe/Stockholm" "Europe/Berlin" "Europe/Rome"  "Europe/Madrid" "Europe/Kiev" "Asia/Kolkata"  "Asia/Hong_Kong" "Asia/Tokyo" )
 
 if [ "$1" = "--press-to-quit" ] || [ "$1" = "-ptq" ]
 then
