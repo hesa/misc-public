@@ -8,7 +8,7 @@
 export DATE_FMT="%Y-%m-%d %H:%M:%S  %Z" 
 LC_TIME=en_GB.utf8
 DATE=$(date)
-declare -a TIME_ZONES=("America/New_York"  "UTC" "Europe/Stockholm" "Europe/Berlin" "Europe/Rome"  "Europe/Madrid" "Europe/Kiev" "Asia/Kolkata"  "Asia/Hong_Kong" "Asia/Tokyo" )
+declare -a TIME_ZONES=("America/Los_Angeles" "America/New_York"  "UTC" "Europe/Stockholm" "Europe/Berlin" "Europe/Rome"  "Europe/Madrid" "Europe/Kiev" "Asia/Kolkata"  "Asia/Hong_Kong" "Asia/Tokyo" )
 
 if [ "$1" = "--press-to-quit" ] || [ "$1" = "-ptq" ]
 then
@@ -37,7 +37,7 @@ show_all() {
     echo 
 }
 
-show_all
+show_all | sort -n --key=2,2 --key=3,3
 
 if [ "$WAIT" = "true" ]
 then
