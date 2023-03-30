@@ -165,13 +165,15 @@ https://www.liseberg.com/
 
 ## Slottskogen
 
-A park. Nice for walking and in case you're German you want to see a moose.
+A park. Nice for walking and in case you're German you probably want to see a moose.
+
+https://www.goteborg.com/en/places/slottsskogen-2
 
 https://en.wikipedia.org/wiki/Slottsskogen
 
 ## Gothenburg Botanical Garden
 
-https://maps.app.goo.gl/LHd8DgfdyHBjE2CAA
+https://swedishgardens.se/en/garden/gothenburg-botanical-garden/
 
 ## Haga
 
@@ -182,6 +184,8 @@ this area usually attracts tourists since it is considered cozy.
 
 Old fortress to protect us from the Danes. They never came to visit us
 by the way. Nice view over Gothenburg.
+
+https://www.goteborg.com/en/places/skansen-kronan-2
 
 https://en.wikipedia.org/wiki/Skansen_Kronan
 
@@ -234,7 +238,7 @@ Europe kind of food.
 
 ## Koka
 
-https://www.goteborg.com/platser/koka/ (Michelin)
+https://restaurangkoka.se/ (Michelin)
 
 ## Levantine
 
@@ -249,7 +253,7 @@ https://manfreds.com/
 
 ## Project
 
-https://www.goteborg.com/platser/project/ (Michelin)
+https://www.projectgbg.com/ (Michelin)
 
 ## Restaurang 28+
 
