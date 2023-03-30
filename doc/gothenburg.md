@@ -212,8 +212,8 @@ https://bpbrasserie.se
 
 ## Fiskbar 17
 
-Good fish restaurant. If you plan to go here for lunch (I do every and
-then), make sure to be there 11.30 and not 12.00
+Good fish restaurant. If you plan to go here for lunch (I do every now
+and then), make sure to be there 11.30 and not 12.00
 
 http://fiskbar17.se/
 
@@ -229,7 +229,7 @@ http://fiskbar17.se/
 
 ## Gyllene Prag
 
-Best Pilsner in town. Fresh from the Pilsner Urquell factory. Eastern
+Best Pilsner in town? Fresh from the Pilsner Urquell factory. Eastern
 Europe kind of food.
 
 ## Koka
@@ -242,7 +242,7 @@ https://levantine.se/
 
 ## Manfred's brasserie
 
-Excellent (yes, I mean it!!) Wienerschnitzel. Usually very good fish
+Excellent Wienerschnitzel. Usually very good fish
 dishes.
 
 https://manfreds.com/
@@ -261,7 +261,7 @@ https://skmat.se/ (Michelin)
 
 ## Sjömagasinet
 
-Mainly fish. A bit pricy, but good.
+Mainly fish. 
 
 http://www.sjomagasinet.se/
 
@@ -275,7 +275,7 @@ https://toso.nu
 
 ## The old Beefeater Inn
 
-Traditional English pub with good pub food.
+Traditional English pub with good (pub) food.
 
 https://www.beefeaterinn.se/
 
@@ -285,12 +285,12 @@ https://theparlour21.se
 
 ## Vita
 
-Nice and affordable Italian food. Good Italian (mainly Tuscan) wines at nice
-prices.
+Nice and affordable Italian food. Good Italian (mainly Toscana and
+Piedmonte) wines at nice prices.
 
 https://vitarestaurang.se/
 
-## Vår
+## Vrå
 
 https://restaurangvra.se
 
