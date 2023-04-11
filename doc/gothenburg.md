@@ -99,13 +99,13 @@ Getting to the archipelago - https://www.goteborg.com/en/guides/getting-to-the-a
 
 Take the public transport ferry from Saltholmen to one of these islands:
 
-* Brännö - https://www.goteborg.com/en/places/branno/
-
-* Styrsö - https://www.goteborg.com/en/places/styrso
+* Brännö - https://www.goteborg.com/en/places/branno/ 
 
 * Vinga - https://www.goteborg.com/en/places/vinga/ (save this for a beautiful and warm day)
 
-and also .... 
+and if you've already visited the above:
+
+* Styrsö - https://www.goteborg.com/en/places/styrso
 
 * Donsö - https://www.goteborg.com/en/places/donso
 
@@ -191,28 +191,60 @@ https://en.wikipedia.org/wiki/Skansen_Kronan
 
 # Coffee
 
-* http://barcentro.se/ (flawless coffee)
+* https://www.brogyllen.se/ 
+
+* http://barcentro.se/ (good Italien coffee)
+
+* https://damatteo.se/
+
+* Ahlströms Konditori, classic Swedish cafe founded in 1901 - https://www.ahlstromskonditori.se/
+
+* Café Husaren, famous for their big cinnamon rolls (but really, who wants that?) 
+
+* Café Kringlan, Haga Nygata 13
+
+* JOS Hälsocafé, Kungsportsavenyen 23 (healthy food)
 
 # Eating and drinking
 
 I am not a big fan of burgers, but you will find a burger restaurant
 in every corner of Gothenburg.
 
-## Bar Robusta
+## Bar Bruno
 
-https://www.barrobusta.se/
+Cocktail bar
+
+https://barbruno.se/ 
+
+## Bar Bulot
+
+Wine bar in the big market hall
+
+https://www.storasaluhallen.se/handlare/bar-bulot/
 
 ## Bar La Lune
 
 https://barlalune.dinesuperb.com/
 
+## Bar Robusta
+
+https://www.barrobusta.se/
+
 ## Bhoga
 
 https://bhoga.se/ (Michelin)
 
+## Bikt
+
+https://www.biktrestaurang.se/
+
 ## BP Brasserie
 
 https://bpbrasserie.se
+
+## Champgnebaren
+
+https://www.champagnebaren.se/
 
 ## Fiskbar 17
 
@@ -223,7 +255,9 @@ http://fiskbar17.se/
 
 Reserve a table: https://fiskbar17.superbexperience.com/
 
-http://fiskbar17.se/
+## Fiskekrogen
+
+https://fiskekrogen.se/
 
 ## Food trucks
 
@@ -286,6 +320,16 @@ https://www.beefeaterinn.se/
 ## The Parlour
 
 https://theparlour21.se
+
+## Unity Jazz
+
+Jazz Bar and restaurant
+
+https://www.unityjazz.se/
+
+## Vinbaren
+
+https://vinbaren.nu/
 
 ## Vita
 
