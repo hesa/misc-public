@@ -1,12 +1,26 @@
 #!/bin/bash
 
 DIR=.
-
+HIDE=""
+KEEP="| grep +++ | cut -d ' ' -f 2 | sed s,b/,,g"
+UT=1
+DIFF=1
 while [ "$1" != "" ]
 do
     case "$1" in
         "--quiet"|"-q")
             HIDE="| grep -v -e \"~$\" -e \".pyc$\" "
+            ;;
+        "--no-filess-only"|"-nfo")
+            KEEP=""
+            ;;
+        "--untracked"|"-ut")
+            UT=1
+            DIFF=0
+            ;;
+        "--diff"|"-d")
+            UT=0
+            DIFF=1
             ;;
         *)
             DIR=$1
@@ -21,4 +35,16 @@ then
     echo "Directory not existing or permissons are missing"
     exit 1
 fi
-echo "git diff " | bash
+
+if [ $DIFF -eq 1 ]
+then
+    echo "#  ---===[ Diff ]===---"
+    echo "git diff $HIDE $KEEP" | bash
+fi
+
+if [ $UT -eq 1 ]
+then
+    echo "#  ---===[ Untracked ]===---"
+    echo "git ls-files --others --exclude-standard $HIDE" | bash
+fi
+
