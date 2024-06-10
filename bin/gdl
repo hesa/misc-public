@@ -5,6 +5,7 @@ HIDE=""
 KEEP="| grep +++ | cut -d ' ' -f 2 | sed \"s,b/,,g\""
 UT=1
 DIFF=1
+TREE=0
 while [ "$1" != "" ]
 do
     case "$1" in
@@ -22,6 +23,9 @@ do
             UT=0
             DIFF=1
             ;;
+        "--tree"|"-t")
+            TREE=1
+            ;;
         *)
             DIR=$1
             ;;
@@ -29,11 +33,10 @@ do
     shift
 done
 
-#cd $DIR
-if [ $? -ne 0 ]
+if [ $TREE -eq 1 ]
 then
-    echo "Directory not existing or permissons are missing"
-    exit 1
+    git log --oneline --graph --decorate --all
+    exit 0
 fi
 
 if [ $DIFF -eq 1 ]
