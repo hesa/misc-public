@@ -2,7 +2,8 @@
 
 DIR=.
 HIDE=""
-KEEP="| grep +++ | cut -d ' ' -f 2 | sed \"s,b/,,g\""
+KEEP=""
+#KEEP="| grep +++ | cut -d ' ' -f 2 | sed \"s,b/,,g\""
 UT=1
 DIFF=1
 TREE=0
@@ -26,6 +27,15 @@ do
         "--tree"|"-t")
             TREE=1
             ;;
+        "--help")
+            echo "--quiet"
+            echo "--no-filess-only"
+            echo "--untracked"
+            echo "--diff"
+            echo "--tree"
+            echo "--help"
+            exit 0
+            ;;
         *)
             DIR=$1
             ;;
@@ -42,7 +52,7 @@ fi
 if [ $DIFF -eq 1 ]
 then
     echo "#  ---===[ Diff ]===---"
-    echo "git diff $DIR $HIDE $KEEP " | bash
+    echo "git diff --name-only $DIR $HIDE $KEEP " | bash
 fi
 
 if [ $UT -eq 1 ]
