@@ -8,6 +8,9 @@ do
         "--quiet"|"-q")
             HIDE="| grep -v -e \"~$\" -e \".pyc$\" "
             ;;
+        "--quiet"|"-q")
+            HIDE="| grep -v -e \"~$\" -e \".pyc$\" "
+            ;;
         *)
             DIR=$1
             ;;
