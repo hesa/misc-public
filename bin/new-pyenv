@@ -1,0 +1,158 @@
+#!/bin/bash
+
+# SPDX-FileCopyrightText: 2025 Henrik Sandklef
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+MODULES_TO_INSTALL=""
+REQUIREMENTS_FILES_TO_INSTALL=""
+PY_ENV=~/python3-temp-environment
+
+FREEZE_FILE=~/python3-temp-requirement.txt
+
+DEBUG=false
+
+stderr()
+{
+    echo "$*" 1>&2
+}
+
+info()
+{
+    stderr "$*"
+}
+
+debug()
+{
+    if [ "$DEBUG" = "true" ]
+    then
+        stderr "$*"
+    fi
+}
+
+while [ "$1" != "" ]
+do
+    case "$1" in
+        "--freeze")
+            FREEZE=true
+            ;;
+        "--run")
+            RUN=true
+            ;;
+        "--debug")
+            DEBUG=true
+            ;;
+        "--exec")
+            if [ "$2" = "" ]
+            then
+                info "Missing command to execute, bailing out"
+                exit 1
+            fi
+            EXEC_COMMAND="$2"
+            shift
+            ;;
+        "--install")
+            INSTALL_MODE=module
+            ;;
+        "--requirement")
+            INSTALL_MODE=requirement
+            ;;
+        *)
+            case $INSTALL_MODE in
+                "requirement")
+                    debug "Adding requirement file: $1"
+                    REQUIREMENTS_FILES_TO_INSTALL="$REQUIREMENTS_FILES_TO_INSTALL $1" 
+                    ;;
+                "module")
+                    debug "Adding module: $1"
+                    MODULES_TO_INSTALL="$MODULES_TO_INSTALL $1"
+                    ;;
+                *)
+                    echo "Oh ...???"
+            esac
+    esac
+    shift
+done    
+
+setup_py_environment()
+{
+    debug "Setting up environment"
+    if [ "${PY_ENV}" = "" ]
+    then
+        info PY_ENV variable not set or empty, bailing out
+        exit 1
+    fi
+    
+    debug " * clean up ${PY_ENV}"
+    rm -fr "${PY_ENV}"
+    debug " * create ${PY_ENV}"
+    python3 -m venv ${PY_ENV}
+    debug " * init ${PY_ENV}"
+    source ${PY_ENV}/bin/activate
+
+    info "# Python environment (${PY_ENV} initialised)"
+}
+
+install_modules()
+{
+    debug "Install modules"
+    if [ "${MODULES_TO_INSTALL}" != "" ]
+    then
+        debug " * Install from list of modules"
+        pip3 install ${MODULES_TO_INSTALL}
+    fi
+    
+    if [ "${REQUIREMENTS_FILES_TO_INSTALL}" != "" ]
+    then
+        debug " * Install from requirement files"
+        for req_file in ${REQUIREMENTS_FILES_TO_INSTALL}
+        do
+            debug "   * Install from requirement file $req_file"
+            pip3 install -r ${req_file}
+        done
+    fi
+}
+
+store()
+{
+    debug "Store state"
+    if [ "${FREEZE}" != "" ]
+    then
+        debug " * freezing"
+        pip3 freeze > ${FREEZE_FILE}
+        info "Stored requirements in: ${FREEZE_FILE}"
+    else
+        debug " * ignored"
+    fi
+}
+
+run()
+{
+    debug "Store state"
+    if [ "${RUN}" != "" ]
+    then
+        debug " * start new shell to work in "
+        info "Starting bash, when you are done exit the shell to finish this script"
+        bash
+    else
+        debug " * ignored"
+    fi
+}
+
+exec_command()
+{
+    debug "Store state"
+    if [ "${EXEC_COMMAND}" != "" ]
+    then
+        debug " * executing: ${EXEC_COMMAND}"
+        ${EXEC_COMMAND}
+    else
+        debug " * ignored"
+    fi
+}
+
+setup_py_environment
+install_modules
+exec_command
+run
+store
