@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DIR_TO_SCAN="$1"
+OUTPUT_FILE=$(echo $DIR_TO_SCAN | sed 's,/$,,g')-scan.json
+PARALLEL_ARGS=" -n $(cat /proc/cpuinfo | grep processor | wc -l) "
+
+export ARGS=" -clipe --license-text --license-text-diagnostics --classify --license-clarity-score --summary ${PARALLEL_ARGS} ${EXTRA_ARGS} --json-pp ${OUTPUT_FILE} ${DIR_TO_SCAN} "
+
+scancode $ARGS
