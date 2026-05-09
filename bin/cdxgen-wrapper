@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CDXGEN_HOST_TMP_DIR=/tmp/cdxgen
+
+gencdx()
+{
+    mkdir -p ${CDXGEN_HOST_TMP_DIR}/
+    docker run --rm -e CDXGEN_DEBUG_MODE=debug -v /tmp:/tmp -v $(pwd):/app:rw -t ghcr.io/cyclonedx/cdxgen:master --profile license-compliance -r /app -o /app/cdxgen-bom.json
+}
+
+gencdx $1
