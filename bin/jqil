@@ -1,0 +1,54 @@
+#!/bin/bash
+
+VERBOSE=false
+
+verbose()
+{
+    if [ "$VERBOSE" = "true" ]
+    then
+        echo "$*" 1>&2
+    fi
+}
+
+
+for arg in $*
+do
+    case "$1" in
+        "--force"|"-f")
+            FORCE=true
+            ;;
+        "--verbose"|"-v")
+            VERBOSE=true
+            ;;
+        *)
+            verbose "The following arguments are treated as files: $*"
+            break
+    esac
+    shift
+done
+
+FILES="$*"
+
+jq_inline()
+{
+    JSON_FILE="$1"
+    BAK_FILE="${JSON_FILE}.tmp-jqil"
+
+    verbose "Formating $JSON_FILE"
+    
+    verbose " * copy $JSON_FILE to ${BAK_FILE}"
+    cp "${JSON_FILE}" "${BAK_FILE}"
+    verbose " * format ${BAK_FILE} to $JSON_FILE"
+    jq . "${BAK_FILE}" > "${JSON_FILE}"
+    verbose " * remove ${BAK_FILE}"
+    rm "${BAK_FILE}"
+}
+
+#echo "FORCE: $FORCE "
+#echo "FILES: $FILES "
+
+for file in ${FILES}
+do
+    jq_inline "$file"
+done
+            
