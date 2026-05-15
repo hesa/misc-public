@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# wrapper script to ease source code scanning with Scancode Toolkit
+#
+
 for arg in $*
 do
     case "$1" in
