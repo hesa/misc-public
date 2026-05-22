@@ -1,9 +1,31 @@
 #!/bin/bash
 
-DIR_TO_SCAN="$1"
-OUTPUT_FILE=$(echo $DIR_TO_SCAN | sed 's,/$,,g')-scan.json
-PARALLEL_ARGS=" -n $(cat /proc/cpuinfo | grep processor | wc -l) "
+for arg in $*
+do
+    case "$1" in
+        "--single-file"|"-sf")
+            SINGLE=true
+            ;;
+        *)
+            break
+            ;;
+    esac
+    shift
+done
 
-export ARGS=" -clipe --license-text --license-text-diagnostics --classify --license-clarity-score --todo --license-diagnostics --summary ${PARALLEL_ARGS} ${EXTRA_ARGS} --json-pp ${OUTPUT_FILE} ${DIR_TO_SCAN} "
 
-scancode $ARGS
+
+
+if [ "$SINGLE" = "true" ]
+then
+    DIR_TO_SCAN="$1"
+    OUTPUT_FILE=$(echo $DIR_TO_SCAN | sed 's,/$,,g')-scan.json
+    export ARGS=" -l --license-text --license-text-diagnostics --todo --license-diagnostics  --json-pp ${OUTPUT_FILE} ${DIR_TO_SCAN} "
+else
+    DIR_TO_SCAN="$1"
+    OUTPUT_FILE=$(echo $DIR_TO_SCAN | sed 's,/$,,g')-scan.json
+    PARALLEL_ARGS=" -n $(cat /proc/cpuinfo | grep processor | wc -l) "
+    export ARGS=" -clipe --license-text --license-text-diagnostics --classify --license-clarity-score --todo --license-diagnostics --summary ${PARALLEL_ARGS} --json-pp ${OUTPUT_FILE} ${DIR_TO_SCAN} "
+fi
+
+echo scancode $ARGS
