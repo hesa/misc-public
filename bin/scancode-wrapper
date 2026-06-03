@@ -13,6 +13,17 @@ do
     shift
 done
 
+if [ "$SINGLE" = "true" ]
+then
+    DIR_TO_SCAN="$1"
+    OUTPUT_FILE=$(echo $DIR_TO_SCAN | sed 's,/$,,g')-scan.json
+    export ARGS=" -l --license-text --license-text-diagnostics --todo --license-diagnostics  --json-pp ${OUTPUT_FILE} ${DIR_TO_SCAN} "
+else
+    DIR_TO_SCAN="$1"
+    OUTPUT_FILE=$(echo $DIR_TO_SCAN | sed 's,/$,,g')-scan.json
+    PARALLEL_ARGS=" -n $(cat /proc/cpuinfo | grep processor | wc -l) "
+    export ARGS=" -clipe --license-text --license-text-diagnostics --classify --license-clarity-score --todo --license-diagnostics --summary ${PARALLEL_ARGS} --json-pp ${OUTPUT_FILE} ${DIR_TO_SCAN} "
+fi
 
 
 
@@ -28,4 +39,4 @@ else
     export ARGS=" -clipe --license-text --license-text-diagnostics --classify --license-clarity-score --todo --license-diagnostics --summary ${PARALLEL_ARGS} --json-pp ${OUTPUT_FILE} ${DIR_TO_SCAN} "
 fi
 
-scancode $ARGS
+echo scancode $ARGS
