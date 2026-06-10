@@ -1,0 +1,15 @@
+#!/bin/bash
+
+CMD=$1
+
+if [ "$CMD" = "" ]
+then
+    echo missing command
+    exit 1
+fi
+
+for path in $(echo $PATH | tr ':' ' ')
+do
+    #echo " * try $path/$CMD"
+    ls $path/$CMD 2>/dev/null
+done
